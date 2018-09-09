@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Examples</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport"/>
+	<link href="dist/dialog.css" rel="stylesheet"></head>
+	<script src="dist/mDialogMin.js"></script>
+	<style>
+		*{margin: 0;padding: 0;}
+		.mDialogs{display: inline-block;padding: 0 20px; text-decoration: none;outline: none; margin: 20px 10px; background: #222;color:#fff; line-height: 40px; text-align: center}
+		.dialog_load2.c_alert_wrap{background: none;box-shadow: none}.dialog_load.c_alert_wrap{background: none;}.dialog_load .c_alert_con{background: rgba(0,0,0,.7);padding:24px 25px}.c_alert_con img{vertical-align: top}
+	</style>
+<body>
+	<a class="mDialogs" id="mdialog1" href="javascript:;">默认</a>
+	<a class="mDialogs" id="mdialog2" href="javascript:;">2秒后自动关闭</a>
+	<a class="mDialogs" id="mdialog3" href="javascript:;">带有title</a>
+	<a class="mDialogs" id="mdialog4" href="javascript:;">带有按钮</a>
+	<a class="mDialogs" id="mdialog5" href="javascript:;">追加样式</a>
+	<a class="mDialogs" id="mdialog6" href="javascript:;">其他</a>
+	<a class="mDialogs" id="mdialog9" href="javascript:;">正在加载</a>
+</body>
+<script>
+/**使用说明*************************************/
+
+
+// Dialog.init('测试文字') //默认
+// Dialog.init('测试文字',2000) //第二个参数时间，2秒后自动关闭
+// Dialog.init('测试文字',{
+//     time : 1000,  //自动关闭
+//     maskClick : false, //点击背景层是否关闭弹层
+//     mask : false, //是否显示遮罩
+//     title : '是否删除？', //添加标题
+//     index : 1,  //设置索引，用于close方法
+//     addClass : 'bgRed', //追加class
+//     style : 'color:red', //追加css
+//     button : { //按钮
+//         确定 : function(){
+//             Dialog.init('你点击了确定',1000);
+//             Dialog.close(this);
+//         },
+//         取消 : function(){
+//             Dialog.init('你点击了取消',1000)
+//             Dialog.close(this);
+//         }
+//     },
+//     before : function(){
+//         //this.classList.add('autoWidth')
+//         //dom创建成功，但未渲染
+//         console.log('创建成功',this);
+//     },
+//     after : function(){
+//         console.log('关闭成功',this)
+//     },
+//     onload : function(){
+//         console.log('加载成功',this)
+//     }
+// });
+// //关闭
+// Dialog.close(this); //在内部使用可直接使用this
+// Dialog.close(1,function(){
+//     //手动关闭弹层，第一个参数为索引值（配合上面index参数使用）；
+//     //第二个参数为回调
+// });
+
+
+mdialog1.onclick = function(){
+    Dialog.init('大家都吃着聊着笑着',{maskClick : 1});
+}
+mdialog2.onclick = function(){
+    Dialog.init('两秒后自动关闭',2000);
+}
+mdialog3.onclick = function(){
+    Dialog.init('带有title',{
+        title : '是否删除？'
+    });
+}
+mdialog4.onclick = function(){
+    Dialog.init('<input type="text" placeholder="请输入5个字符"  style="margin:8px 0;width:100%;padding:11px 8px;font-size:15px; border:1px solid #999;"/>',{
+        title : '输入点什么吧！',
+        button : {
+            确定 : function(){
+                if(this.querySelector('input').value.length >= 5){
+                Dialog.init('你输入的内容是：'+this.querySelector('input').value);
+                Dialog.close(this);
+            }else{
+                Dialog.init('你输入的内容不符合要求！',1100);
+            };
+            },
+            点击关闭 : function(){
+                Dialog.init('你点击了关闭',1000);
+                Dialog.close(this);
+            }
+        }
+    });
+}
+mdialog5.onclick = function(){
+    Dialog.init('追加样式',{
+        title : '警告',
+        style : 'padding: 30px 14px;color:red;font-weight: bold;font-size:25px'
+    });
+}
+mdialog6.onclick = function(){
+    Dialog.init('<img src="dist/6.jpg" width="100%">',{
+        title : '图片预览',
+        button : {
+            确定 : function(){Dialog.close(this);}
+        }
+    });
+}
+mdialog9.onclick = function(){
+    Dialog.init('<img src="dist/load3.gif" width="48px"/>',{
+	    mask : 0,
+	    addClass : 'dialog_load',
+	    time : 3000,
+	    after : function(){
+	        Dialog.init('加载成功！',1000);
+	    }
+	});
+}
+</script>
+</html>

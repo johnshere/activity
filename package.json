@@ -1,0 +1,45 @@
+{
+  "name": "activity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "liujiang",
+  "license": "MIT",
+  "private": true,
+  "babel":{
+    "presets": ["env"],
+    "plugins": []
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "exports-loader": "^0.7.0",
+    "expose-loader": "^0.7.5",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "html-withimg-loader": "^0.1.16",
+    "image-webpack-loader": "^4.3.1",
+    "jquery": "^3.3.1",
+    "mini-css-extract-plugin": "^0.4.2",
+    "script-loader": "^0.7.2",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.4"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --config ./webpack.config/webpack.dev.conf.js",
+    "pro": "cross-env NODE_ENV=production webpack --config ./webpack.config/webpack.pro.conf.js --progress",
+    "devServer": "webpack-dev-server --config ./webpack.config/webpack.devServer.conf.js --open --mode development",
+    "watch": "webpack --config ./webpack.config/webpack.devServer.conf.js --watch"
+  },
+  "devDependencies": {}
+}
